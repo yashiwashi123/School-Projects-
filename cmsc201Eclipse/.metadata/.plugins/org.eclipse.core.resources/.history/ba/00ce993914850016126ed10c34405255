@@ -1,0 +1,33 @@
+package mystuff;
+
+public class Circle extends Point{
+
+	protected double radius; 
+	protected double xcoord = 0.0;
+	protected double ycoord = 0.0; 
+	
+	public Circle(){
+		 new Point(xcoord, ycoord);
+		 this.radius = 0.0;
+	}
+	public Circle(double x, double y, double r){
+		xcoord =  x;
+		ycoord =  y;
+		new Point(xcoord, ycoord);
+			
+		if ( r < 0.0){
+			r = 0.0;
+			this.radius = r; 
+		}
+		else{
+			this.radius = r;
+		}
+	}
+	public Double Area(){
+		return Math.PI * (this.radius*this.radius);
+	}
+	public String toString(){
+		return "Circle: " + "r=" + this.radius +" at " + "(" + xcoord + "," + ycoord + ")" ;
+	}
+	
+}

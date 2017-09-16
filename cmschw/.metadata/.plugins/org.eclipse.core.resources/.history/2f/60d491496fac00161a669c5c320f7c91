@@ -1,0 +1,100 @@
+/*
+  JUnit tests for editor.
+
+1. To use these tests you must download and uncompress junit from
+https://github.com/junit-team/junit4/wiki/Download-and-Install
+
+2. Now put the following commands into a script (e.g., doit)
+
+-----------8<-----------------------
+#!/bin/bash
+
+JUNITDIR=/Users/sven/lib/junit
+
+javac -cp .:$JUNITDIR/hamcrest-core-1.3.jar:$JUNITDIR/junit-4.12.jar TestCases.java
+if [ $? -eq 0 ]; then
+    java -cp .:$JUNITDIR/hamcrest-core-1.3.jar:$JUNITDIR/junit-4.12.jar org.junit.runner.JUnitCore TestCases
+else
+    echo "Compile failed."
+fi
+-----------8<-----------------------
+
+
+3. Make the script runnable: From the shell $: chmod +x doit
+4. Run "doit": $: doit
+
+
+*/
+
+import junit.framework.TestCase;
+import java.awt.event.*;
+
+public class TestCases extends TestCase {
+    Edit edit;
+
+    /* Create new application for each test.*/
+    protected void setUp() throws Exception {
+	super.setUp();
+	edit =  new Edit("foo.txt");
+    }	
+
+    protected void tearDown() throws Exception {
+	super.tearDown();
+	edit.quit();
+	edit = null;
+    }	
+
+    /*
+      Cause keyevent of single character to be sent to the Edit object.
+    */
+    private void type(char c) {
+	int keycode = KeyEvent.getExtendedKeyCodeForChar(c);
+	int id = KeyEvent.KEY_PRESSED;
+	long when = System.currentTimeMillis();
+	int modifiers = 0;
+	KeyEvent ev = new KeyEvent( edit.ep(), id, when, modifiers, keycode, c);
+	edit.keyPressed(ev);
+	// add a bit of time between key presses
+	try{Thread.sleep(50);}catch(InterruptedException e){}
+    }
+
+    /*
+      Insert a single character into an empty buffer.
+    */
+    public void testInsert1 () {
+	char c = 'i';
+	type(c);
+	type('a');
+	type((char) KeyEvent.VK_ESCAPE);
+	assertTrue( edit.ep().getText().equals("a"));
+    }
+
+    /*
+      Insert a three characters into an empty buffer.
+    */
+    public void testInsert2 () {
+	type('i'); // insert
+	String s = "abc";
+	for (int i = 0; i < s.length(); i++ ) {
+	    type(s.charAt(i));
+	}
+	type((char) KeyEvent.VK_ESCAPE);
+	assertTrue( edit.ep().getText().equals(s));
+    }
+
+    /*
+      Insert a 39 characters into an empty buffer.
+    */
+    public void testInsert3 () {
+	type('i'); // insert
+	String s = "012345678901234567890123456789012345678";
+
+	for (int i = 0; i < s.length(); i++ ) {
+	    type(s.charAt(i));
+	}
+	type((char) KeyEvent.VK_ESCAPE);
+	assertTrue( edit.ep().getText().equals(s));
+    }
+
+}
+

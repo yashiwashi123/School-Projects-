@@ -1,0 +1,7 @@
+package mystuff;
+
+import junit.framework.TestCase;
+
+public class SortsTest extends TestCase {
+
+}

@@ -1,0 +1,43 @@
+package mystuff;
+
+import junit.framework.TestCase;
+
+public class SortsTest extends TestCase {
+	/*
+	public void setUp() throws Exception{
+		int arraylen = 10;
+		int a[] = new int[arraylen];
+		Sorts.randomArray(a, a.length);
+		
+		*/
+	
+	
+	public void setUp() throws Exception{
+		int nullnums[] = null; 
+	}
+	
+	
+	public void testNullBubbleArray() {
+		int nullnums[] = null;  
+		Sorts.bubbleSort(nullnums);
+		assertTrue(nullnums == null);
+	}
+	
+	public void tearDown() throws Exception{
+	}
+	
+	
+	public void testNullInsertArray(){
+	int nullnums[] = null; 
+	Sorts.insertionSort(nullnums);
+	assertTrue(nullnums == null);
+	}
+	
+	public void testBubbleArray(){
+		int nums[]= new int[10]; 
+		Sorts.randomArray(nums,nums.length);
+		Sorts.bubbleSort(nums);
+		
+	}
+	
+}

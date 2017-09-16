@@ -1,0 +1,19 @@
+package mystuff;
+
+public class Cylinder extends Circle{
+	protected double height;
+	protected double radius; 
+	protected double xcoord;
+	protected double ycoord;
+	
+	
+	/*
+	public Cylinder(){
+		
+	}
+	
+	public Double Area(){
+		
+	}
+*/
+}

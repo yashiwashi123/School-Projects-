@@ -1,0 +1,25 @@
+package mystuff;
+
+public class Circle extends Point{
+
+	protected double radius; 
+
+	public Circle(){
+		Point ptc = new Point();
+		 this.radius = 1.0;
+	}
+	public Circle(Point ptc, double r){
+		
+		if ( r < 0.0){
+			r = 0.0;
+			this.radius = r; 
+		}
+		else{
+			this.radius = r;
+		}
+	}
+	public Double Area(){
+		return Math.PI * (this.radius*this.radius);
+	}
+	
+}
