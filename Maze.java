@@ -33,6 +33,8 @@ NOTE:  YOU CAN DO ANYTHING YOU WANT WITH THIS CODE AND APPLET, EXCEPT
 MODIFIED: 2/28/07 by S. Anderson
           9/13/16 Converted from applet to application.
 
+SOLUTION: Yashar Hashemi 
+
 **************************************************************************/
 
 import java.awt.*;
@@ -362,6 +364,8 @@ public void playSound() {
       (row,col).  Return true if a solution is found.  The maze is
       considered to be solved if the path reaches the lower right
       cell.
+
+      Author: Yashar Hashemi 
 
     */
     public boolean solveMaze(Position currentPosition) {
