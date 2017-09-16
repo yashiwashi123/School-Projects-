@@ -1,8 +1,0 @@
-package mystuff;
-
-public class ExtendedPoint extends Point {
-
-	//public ExtendedPoint (double x, double y) {
-		//setValue(x,y);
-	}
-}
